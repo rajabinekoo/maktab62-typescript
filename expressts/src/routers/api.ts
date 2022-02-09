@@ -1,9 +1,17 @@
-import express, {Router} from "express";
-import {getReuqestHandler as getUsers, postReuqestHandler as createUser} from './user'
+import express, { Router } from "express";
+import {
+  errorHandler,
+  getReuqestHandler as getUsers,
+  postReuqestHandler as createUser,
+  putReuqestHandler as updateUser,
+  deleteRequestHandler as deleteUser
+} from "./user";
 
-const router = Router()
+const router = Router();
 
-router.get("/user", getUsers)
-router.post("/user", createUser)
+router.get("/user", getUsers, errorHandler);
+router.post("/user", createUser, errorHandler);
+router.put("/user/:id", updateUser, errorHandler);
+router.delete("/user/:id", deleteUser, errorHandler);
 
-export default router
+export default router;
